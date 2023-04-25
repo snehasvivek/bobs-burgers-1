@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Bob's Burgers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+
+  <body class="text-center">
+    {% include 'navbar.html' %}  
+    <div class="container">
+      <h1 style="padding-top:10px;padding-bottom:10px;">Sign In</h1>
+      <main class="form-signin w-100 m-auto">
+        <form>
+          <img class="mb-4" src="static/hamburger.png" alt="" width="72" height="57">
+          <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+          <div class="form-floating">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div style="padding-top:10px;padding-bottom:10px;"></div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+
+          <div class="container" style="padding-top:10px;">
+            <a class="btn btn-success btn-lg" href="welcome.html" role="button">Sign In</a>
+          </div>
+          
+          <div class="container" style="padding-top:10px;">
+            <a class="btn btn-secondary btn-lg" href="create-account.html" role="button">Create Account</a>
+          </div>  
+          
+        </form>
+      </main>
+    </div>
+  </body>
+  
+</html>
