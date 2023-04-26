@@ -142,5 +142,12 @@ def view_cart():
                          cart_info=CART_INFO)
 
 
+@app.route("/view_order")
+def view_order():
+  return render_template("view-order.html",
+                         order_items=CART_ITEMS,
+                         order_info=CART_INFO)
+
+
 if __name__ == '__main__':
   app.run(host='0.0.0.0', debug=True)

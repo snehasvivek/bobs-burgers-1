@@ -7,8 +7,9 @@
   <body>
     {% include 'navbar.html' %}
     <div class="container">
-      <h1>Cart</h1>
-      {% for item in cart_items %}
+      <h1>View Order</h1>
+      <h3>Order ID: {{order_info['order-id']}}</h3> 
+      {% for item in order_items %}
         <div class="row" style="padding-top:20px;">{% include 'cart-item.html' %}</div>
       {% endfor %}
       <div class="row" style="padding-top: 10px;" >
@@ -16,12 +17,12 @@
           <h3>Total</h3>
         </div>
         <div class="col-2">
-          <h3>${{cart_info['total']}}</h3>
+          <h3>${{order_info['total']}}</h3>
         </div>
       </div>
       <div class="row" style="padding-top:20px;padding-bottom:20px">
         <div class="col-4">
-          <a href="{{url_for('checkout')}}" class="btn btn-success btn-lg" type="button">Checkout</a>
+          <a href="{{url_for('view_order')}}" class="btn btn-success btn-lg" type="button">Close</a>
         </div>
       </div>
     </div>
