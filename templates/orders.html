@@ -9,11 +9,11 @@
     <div class="container" style="padding-top:10px;padding-bottom:10px;">
       <h1>Orders</h1>
       <h4 style="padding-top:10px;padding-bottom:10px;">Current Orders</h4>
-      {% for order in current-orders %}
+      {% for order in current_orders %}
         {% include 'order-item.html' %}
       {% endfor %}
       <h4 style="padding-top:10px;padding-bottom:10px;">Past Orders</h4>
-      {% for order in current-orders %}
+      {% for order in past_orders %}
         {% include 'order-item.html' %}
       {% endfor %}
     </div>

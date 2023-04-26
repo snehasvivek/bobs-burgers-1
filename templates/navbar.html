@@ -5,20 +5,20 @@
         </button>
 
         <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
-          <a class="navbar-brand col-lg-3 me-0" href="#">bob's burgers</a>
+          <a class="navbar-brand col-lg-3 me-0">bob's burgers</a>
           <ul class="navbar-nav col-lg-6 justify-content-lg-center">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="menu.html">Menu</a>
+              <a class="nav-link active" aria-current="page" href="{{url_for('menu')}}">Menu</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="orders.html">Orders</a>
+              <a class="nav-link active" href="{{url_for('orders')}}">Orders</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="account.html">Account</a>
+              <a class="nav-link active" href="{{url_for('view_account')}}">Account</a>
             </li>
           </ul>
           <div class="d-lg-flex col-lg-3 justify-content-lg-end">
-            <a class="btn btn-light" href="cart.html" role="button"><img src="static/shopping-cart.png" style="width:20px;height:20px;"></a>
+            <a class="btn btn-light" href="{{url_for('view_cart')}}" role="button"><img src="static/shopping-cart.png" style="width:20px;height:20px;"></a>
           </div>
         </div>
       </div>

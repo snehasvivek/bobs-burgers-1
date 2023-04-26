@@ -1,8 +1,6 @@
 <div class="container" style="padding-bottom:10px;">
-  <p>{{order['name']}}<br>
+  <p>{{order['order-id']}}<br>
     Status: {{order['status']}}<br> 
+    ---------------------------------------------------------------
   </p>
-  {% for item in order-items %}
-    {% include 'cart-item.html' %}
-  {% endfor %}
 </div>

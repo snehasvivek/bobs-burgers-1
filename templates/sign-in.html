@@ -27,11 +27,11 @@
           </div>
 
           <div class="container" style="padding-top:10px;">
-            <a class="btn btn-success btn-lg" href="welcome.html" role="button">Sign In</a>
+            <a class="btn btn-success btn-lg" href="{{ url_for('welcome') }}" role="button">Sign In</a>
           </div>
           
           <div class="container" style="padding-top:10px;">
-            <a class="btn btn-secondary btn-lg" href="create-account.html" role="button">Create Account</a>
+            <a class="btn btn-secondary btn-lg" href="{{ url_for('create_account') }}" role="button">Create Account</a>
           </div>  
           
         </form>

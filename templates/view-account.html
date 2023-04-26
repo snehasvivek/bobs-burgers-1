@@ -7,27 +7,28 @@
   <body>
     {% include 'navbar.html' %}
     <div class="container">
-      <h1>Menu Name</h1>
+      <div style="text-align: right;"><img src="static/hamburger.png" width="200" alt="My Image" /></div>
+      <h1>Account</h1>
       <div class="row">
         <div class="col-6">
-          <p>Name: xxxxxx</p>
+          <p>Name: {{user['first-name']}} {{user['last-name']}}</p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-6">
-          <p>Email: user@server.com</p>
+          <p>Email: {{user['email']}}</p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-6">
-          <p>Password: xxxxxx</p>
+          <p>Password: xxxxxxxxxxx</p>
         </div>
       </div>
       
       <div class="container">
-        <a class="btn btn-outline-success btn-lg" role="button" href="edit-account.html">Edit</a>
+        <a class="btn btn-outline-success btn-lg" role="button" href="{{url_for('edit_account')}}">Edit</a>
       </div>
     </div>
   </body>

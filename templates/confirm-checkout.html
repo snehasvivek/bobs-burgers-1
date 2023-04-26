@@ -17,10 +17,10 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body py-0">
-              <p>Order Number: {{order['id']}}<br>Status: {{order['status']}}<br><br>Thank you for your order!</p>
+              <p>Order Number: {{order['order-id']}}<br>Status: {{order['status']}}<br><br>Thank you for your order!</p>
             </div>
             <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
-              <button type="button" class="btn btn-lg btn-primary">Close</button>
+              <a class="btn btn-lg btn-primary" type="button" href="{{url_for('menu')}}">Close</a>
             </div>
           </div>
         </div>

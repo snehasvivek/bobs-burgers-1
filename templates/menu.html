@@ -4,10 +4,11 @@
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Menu Name </h1>
+    {% include 'navbar.html' %}
     <div class="container">
-      {% for item in menu %}
-        <div class="row">{% include menu-item.html %}</div>
+      <h1>{{menu['name']}}</h1>
+      {% for item in items %}
+        <div class="row" style="padding-top:20px;">{% include 'menu-item.html' %}</div>
       {% endfor %}
     </div>
   </body>
