@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+import psycopg2
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -88,9 +89,103 @@ CART_INFO = {'total': 46.98}
 ORDER = {'order-id': 1235324, 'status': 'Processing'}
 
 
+def get_db_connection():
+  conn = psycopg2.connect(
+    "postgres://tsdbadmin:hm6pwjytcgkj55kj@xys2b1iso0.oo73ftqreo.tsdb.cloud.timescale.com:37843/tsdb?sslmode=require",
+    database="tsdb",
+    user="tsdbadmin",
+    password="hm6pwjytcgkj55kj")
+  # open a cursor to perform database operations
+  return conn
+
+
 @app.route("/")
-def hello_world():
+def home():
   return render_template('sign-in.html')
+
+
+@app.route("/setupDB")
+def setup_DB():
+
+  conn = get_db_connection()
+  cur = conn.cursor()
+
+  # execute a command: this creates a new table
+  cur.execute('DROP TABLE IF EXISTS customer;')
+  cur.execute('CREATE TABLE customer ('
+              'customer_id SERIAL PRIMARY KEY,'
+              'password varchar(128) DEFAULT NULL,'
+              'customerName text,'
+              'address text,'
+              'phoneNumber VARCHAR,'
+              'email text);')
+
+  conn.commit()
+  cur.close()
+  conn.close()
+  return render_template("sign-in.html")
+
+
+@app.route("/login", methods=['POST'])
+def login_confirm():
+  USER = {
+    'first-name': 'something',
+    'last-name': 'else',
+    'email': 'something@something'
+  }
+  return render_template('welcome.html', user=USER)
+
+
+@app.route("/new_account", methods=['POST'])
+def create_new_account():
+
+  firstname = request.form['fname']
+  lastname = request.form['lname']
+  email = request.form['email']
+  password = request.form['password']
+
+  conn = get_db_connection()
+  cur = conn.cursor()
+  cur.execute(
+    'INSERT INTO customer (customer_id,password, customerName, email)'
+    'VALUES (1,%s, %s, %s)', ("test", "test", "email"))
+  conn.commit()
+  cur.close()
+  conn.close()
+
+  USER = {'customerName': firstname, 'last-name': lastname, 'email': email}
+  return render_template('welcome.html', user=USER)
+
+
+@app.route('/getallcustomer')
+def index():
+  conn = get_db_connection()
+  cur = conn.cursor()
+  cur.execute('SELECT * FROM customer where customer_id=0;')
+  books = cur.fetchall()
+  cur.close()
+  conn.close()
+  return render_template('welcome.html', user=books)
+
+
+@app.route("/send_checkout", methods=['POST'])
+def send_checkout_info():
+  billing_info = {
+    'first-name': request.form['fname'],
+    'last-name': request.form['lname'],
+    'email': request.form['email'],
+    'address': request.form['address'],
+    'country': request.form['country'],
+    'state': request.form['state'],
+    'zip': request.form['zip']
+  }
+  payment_info = {
+    'name-on-card': request.form['ncard'],
+    'cc-number': request.form['cc-number'],
+    'cc-expiration': request.form['cc-expiration'],
+    'cc-ccv': request.form['cc-ccv'],
+  }
+  return render_template('welcome.html', user=USER)
 
 
 @app.route("/welcome")

@@ -2,85 +2,94 @@
 <html>
   
   <head>
-  <title>Bob's Burgers</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Bob's Burgers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
+    <style>
+      input[type=button], input[type=submit], input[type=reset] {
+        background: none;
+        border: none;
+        color: black;
+      }
+    </style> 
   </head>
 
   <body>
     {% include 'navbar.html' %}
-    <div class="container">
-      <h1>Checkout</h1>
-      <h4>Billing Information</h4>
-      <div class="input-group mb-3" style="padding-bottom:10px;">
-        <div class="row">
-          <div class="col-3">
-            <span class="input-group-text" id="basic-addon1">Name</span>
-          </div>
-          <div class="col-4">
-            <input type="text" class="form-control" placeholder="First Name" aria-label="First Name" aria-describedby="basic-addon1">
-          </div>
-          <div class="col-4">
-            <input type="text" class="form-control" placeholder="Last Name" aria-label="Last Name" aria-describedby="basic-addon1">
-          </div>
-        </div>
-      </div>
-      <div class="form-outline w-50" style="padding-bottom:10px;">
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">Email</span>
-          <input type="text" class="form-control" placeholder="email@server.com" aria-label="Email" aria-describedby="basic-addon1">
-        </div>
-      </div>
-      <div class="form-outline w-75" style="padding-bottom:10px;">
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">Address</span>
-          <input type="text" class="form-control" placeholder="123 Main St" aria-label="Address" aria-describedby="basic-addon1">
-        </div>
-      </div>
-      <div class="row" style="padding-bottom:20px;">
-        <div class="col-md-5">
-            <label for="country" class="form-label">Country</label>
-            <select class="form-select" id="country" required>
-                <option value="">Choose...</option>
-                <option>United States</option>
-            </select>
-            <div class="invalid-feedback">
-                Please select a valid country.
+    <form class="needs-validation" method="post" action="/send_checkout">
+      <div class="container">
+        <h1>Checkout</h1>
+        <main>
+          <h4>Billing Information</h4>
+          <div class="input-group mb-3" style="padding-bottom:10px;">
+          <div class="row">
+            <div class="col-3">
+              <span class="input-group-text" id="basic-addon1">Name</span>
             </div>
-        </div>
-        <div class="col-md-4">
-            <label for="state" class="form-label">State</label>
-            <select class="form-select" id="state" required>
-                <option value="">Choose...</option>
-                <option>California</option>
-            </select>
-            <div class="invalid-feedback">
-                Please provide a valid state.
+            <div class="col-4">
+              <input type="text" class="form-control" placeholder="First Name" aria-label="First Name" aria-describedby="basic-addon1" required id='fname'>
             </div>
+            <div class="col-4">
+              <input type="text" class="form-control" placeholder="Last Name" aria-label="Last Name" aria-describedby="basic-addon1" required id='lname'>
+            </div>
+          </div>
         </div>
-        <div class="col-md-3">
+          <div class="form-outline w-50" style="padding-bottom:10px;">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Email</span>
+            <input type="email" class="form-control" placeholder="email@server.com" aria-label="Email" aria-describedby="basic-addon1" required id='email'>
+          </div>
+        </div>
+          <div class="form-outline w-75" style="padding-bottom:10px;">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Address</span>
+            <input class="form-control" placeholder="123 Main St" aria-label="Address" aria-describedby="basic-addon1" required id='address'>
+          </div>
+        </div>
+          <div class="row" style="padding-bottom:20px;">
+          <div class="col-md-5">
+              <label for="country" class="form-label">Country</label>
+              <select class="form-select" id="country" required>
+                  <option value="">Choose...</option>
+                  <option>United States</option>
+              </select>
+              <div class="invalid-feedback">
+                  Please select a valid country.
+              </div>
+          </div>
+          <div class="col-md-4">
+              <label for="state" class="form-label">State</label>
+              <select class="form-select" id="state" required>
+                  <option value="">Choose...</option>
+                  <option>California</option>
+              </select>
+              <div class="invalid-feedback">
+                  Please provide a valid state.
+              </div>
+          </div>
+          <div class="col-md-3">
             <label for="zip" class="form-label">Zip</label>
-            <input type="text" class="form-control" id="zip" placeholder="" required>
+              <input type="text" class="form-control" id="zip" placeholder="" required>
             <div class="invalid-feedback">
                 Zip code required.
             </div>
-        </div>
-    </div>
-      <h4>Payment Information</h4>   
-      <div class="form-outline w-75" style="padding-top:10px;padding-bottom:10px;">
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">Name on Card</span>
-          <input type="text" class="form-control" aria-label="Name on Card" aria-describedby="basic-addon1">
-        </div>
+          </div>
       </div>
-      <div class="form-outline w-75" style="padding-bottom:10px;">
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">Credit Card Number</span>
-          <input type="text" class="form-control" aria-label="Credit Card Number" aria-describedby="basic-addon1">
+          <h4>Payment Information</h4>   
+          <div class="form-outline w-75" style="padding-top:10px;padding-bottom:10px;">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="ncard">Name on Card</span>
+            <input type="text" class="form-control" aria-label="Name on Card" aria-describedby="basic-addon1" required>
+          </div>
         </div>
-      </div>
-      <div class="input-group mb-3" style="padding-bottom:10px;">
-        <div class="row">
+          <div class="form-outline w-75" style="padding-bottom:10px;">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Credit Card Number</span>
+            <input type="text" class="form-control" aria-label="Credit Card Number" aria-describedby="basic-addon1" required id='cc-number'>
+          </div>
+        </div>
+          <div class="input-group mb-3" style="padding-bottom:10px;">
+          <div class="row">
             <div class="col-md-5">
               <label for="cc-expiration" class="form-label">Expiration</label>
               <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
@@ -95,10 +104,12 @@
                 Security code required
               </div>
             </div>
-        </div>
-      </div> 
-      <a class="btn btn-outline-success btn-lg" href="{{url_for('confirm_checkout')}}" type="button">Checkout</a>
-    </div>
+          </div>
+        </div> 
+          <button class="btn btn-success btn-lg" type="submit">Checkout</button>
+        </main>
+      </div>
+    </form>
     {% include 'footer.html' %}
   </body>
 </html>
